@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+(function trends(){
+	var twit=require('twit');
+	var bing=require('node-bing-api')({ accKey:'D7Zz8z2ySBJvp8ChD5X2k2gGkR4IV0WRohsG/os0qpc'});
+	twit=new twit({
+		consumer_key:'IPp9qawJvqo2iFJlLW6BAArrP',
+		consumer_secret:'SakaNTbJuP72qjEwslqjmUGO7rrw6sTmKgIyQ5Wdio2em8k9fH',
+		access_token:'1313889283-xYX2nZzEFZgGiBTq6qf0EZnGbzcewooGi9ApDm5',
+		access_token_secret:'0wqfncaau8d6tmNoXddsqHj9oT0msFGSt3hqb2xfKLGdo'
+	});
+	twit.get('trends/place', { id:'23424848'/*,exclude:'hashtags'*/ }, function(err, data, response) {
+		//console.log(data[0]['trends']);
+		//console.log(data[0]['trends']);
+		//console.log(data);
+		headline(data[0]['trends'],0);
+	});
+	function headline(trend,i){
+		console.log(trend[i]['name']);
+		bing.news(trend[i]['name'], {
+   			top: 1,  
+   			skip: 0, 
+		},function(error, res, data){
+   			if (typeof data['d']['results'][0]=='undefined') {
+   				headline(trend,i+1);
+   			}
+   			else{
+   				console.log('Source:'+data['d']['results'][0]['Source']+'\n'+data['d']['results'][0]['Title']);	
+   				if (typeof trend[i+1]!='undefined') {
+					headline(trend,i+1);
+				};
+   			}
+		});	
+	}
+})();
