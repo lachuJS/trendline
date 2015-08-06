@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+var news=[],count=0;
 (function trends(){
 	var twit=require('twit');
 	var bing=require('node-bing-api')({ accKey:'D7Zz8z2ySBJvp8ChD5X2k2gGkR4IV0WRohsG/os0qpc'});
@@ -8,27 +9,48 @@
 		access_token:'1313889283-xYX2nZzEFZgGiBTq6qf0EZnGbzcewooGi9ApDm5',
 		access_token_secret:'0wqfncaau8d6tmNoXddsqHj9oT0msFGSt3hqb2xfKLGdo'
 	});
-	twit.get('trends/place', { id:'23424848'/*,exclude:'hashtags'*/ }, function(err, data, response) {
-		//console.log(data[0]['trends']);
-		//console.log(data[0]['trends']);
+	twit.get('trends/place',{ id:'23424848'/*,exclude:'hashtags'*/ },function(error, data, response) {
 		//console.log(data);
-		headline(data[0]['trends'],0);
+		if (error) {
+			console.error("twit get failed!");
+		}
+		else{
+			headline(data[0]['trends'],0);
+		}
 	});
 	function headline(trend,i){
-		console.log(trend[i]['name']);
-		bing.news(trend[i]['name'], {
+		var topic=(function (){
+			if (trend[i]['name'].substr(0,1)=='#') {
+				return trend[i]['name'].substr(1);
+			};
+			return trend[i]['name'];
+		})();
+		console.log(topic);	
+		bing.news(topic, {
    			top: 1,  
    			skip: 0, 
 		},function(error, res, data){
-   			if (typeof data['d']['results'][0]=='undefined') {
-   				headline(trend,i+1);
+   			if (error) {
+   				console.error('bing get failed');
+   				headline(trend,i)
    			}
    			else{
-   				console.log('Source:'+data['d']['results'][0]['Source']+'\n'+data['d']['results'][0]['Title']);	
-   				if (typeof trend[i+1]!='undefined') {
-					headline(trend,i+1);
-				};
+				if (typeof data['d']['results'][0]=='undefined') {
+   					next(trend,i);
+   				}
+   				else{
+   					console.log('Source:'+data['d']['results'][0]['Source']+'\n'+data['d']['results'][0]['Title']);	
+   					next(trend,i);
+   				}
    			}
 		});	
+	}
+	function next(trend,i){
+		if (typeof trend[i+1]!='undefined') {
+			headline(trend,i+1);
+		}
+		else{
+			//publish();
+		}
 	}
 })();
