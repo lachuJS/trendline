@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var twit=require('twit');
-var db=require('./publish.js');
+var db=require('./model.js');
 var bing=require('node-bing-api')({ accKey:'D7Zz8z2ySBJvp8ChD5X2k2gGkR4IV0WRohsG/os0qpc'});
 var forEach=require('async-foreach').forEach;
 
@@ -45,7 +45,7 @@ function headline(trend){
   				else{
   					console.log(data['d']['results'][0]);
   					db.save(topic,data['d']['results'][0]['Title'],data['d']['results'][0]['Source'],
-  						data['d']['results'][0]['Url'],data['d']['results'][0]['Date'],index);
+  						data['d']['results'][0]['Url'],data['d']['results'][0]['Description'],data['d']['results'][0]['Date']);
   				}
   			}
 		});	

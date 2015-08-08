@@ -1,5 +1,9 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1cd= title
+  each line,count in row
+    h3= line.source
+    h2= line.title
+    h4= line.url
+    h4= line.description
