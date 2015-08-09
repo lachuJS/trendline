@@ -40,10 +40,10 @@ db.save=function (trend,title,source,url,desc,date){
 		}
 	});
 }
-db.retreive=function (render){
+db.retreive=function (callback){
 	con.query('select * from line order by date desc,time desc limit 10',function (err,rows,coloumns){
 		//console.log(rows);
-		render(rows);
+		callback(rows);
 	})
 }
 db.close=function (){

@@ -1,13 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var db = require("../bin/model")
+var fs=require('fs');
+var db=require('../bin/model');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  	db.connect();
-  	var render=function (rows){
-  		res.render('index.jade',{title:'Trendline',row:rows });
-  	}
-  	db.retreive(render);
+  	fs.readFile('views/home.html',function(err,data){
+  		res.send(data.toString());
+  	})
+});
+router.get('/data',function(req,res,next){
+	db.connect();
+	var send=function (rows){
+		res.send(rows);
+	}
+	db.retreive(send);
+	db.close();
 });
 
 module.exports = router;
