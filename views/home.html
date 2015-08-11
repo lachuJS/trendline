@@ -2,11 +2,16 @@
 <html>
 <head>
 	<title>trendline</title>
-	<script type="text/javascript" src="js/getlines.js"></script>
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script type="text/javascript" src='js/getlines.min.js'></script>
 </head>
 <body>
 	<h1>Trendline.</h1>	
-	<p id="lines"></p>
-	<a href='javascript:void(0);' onclick="query();">more</a>	
+	<div id='container'>
+		<div id='line-container'>
+		
+		</div>
+		<a href='javascript:void(0);' onclick="query();" id='more'>more</a>
+	</div>	
 </body>
 </html>

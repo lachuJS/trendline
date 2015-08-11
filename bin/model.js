@@ -40,8 +40,9 @@ db.save=function (trend,title,source,url,desc,date){
 		}
 	});
 }
-db.retreive=function (callback){
-	con.query('select * from line order by date desc,time desc limit 10',function (err,rows,coloumns){
+db.retreive=function (count,callback){
+	console.log(count);
+	con.query('select * from line where date=curdate()-{count} order by time desc'.supplant({count:count}),function (err,rows,coloumns){
 		//console.log(rows);
 		callback(rows);
 	})

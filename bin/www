@@ -8,6 +8,9 @@ var app = require('../app');
 var debug = require('debug')('trendline:server');
 var http = require('http');
 
+var io=require('socket.io'); 
+var db=require('./model.js')
+
 /**
  * Get port from environment and store in Express.
  */
@@ -20,6 +23,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+io=io(server);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -28,6 +32,18 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+//socket listeners
+io.on('connection',function (socket){
+    db.connect();
+    //console.log('connected');
+    socket.on('getlines',function (count){
+      db.retreive(count,function (rows){
+        console.log(rows);
+        socket.emit('gotlines',rows);
+      });
+    });
+});
 
 /**
  * Normalize a port into a number, string, or false.

@@ -1,16 +1,33 @@
-window.onload(query());
-document.getElementById('more').onclick;
+var io=io();
+var count=-1;
+document.onload=query();
 function query(){
-	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.open('GET','/data',true);
-	xmlhttp.send();
-	xmlhttp.onreadystatechange=function (){
-		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			var data=JSON.parse(xmlhttp.responseText);
-			for (var i = 0; i < data.length; i++) {
-				document.getElementById('lines').innerHTML+=data[i]['title']+'<br>';
-			};
-		}
-	}
+	count++;
+	io.emit('getlines',count);
 }
+io.on('gotlines',function (rows){
+	 if (rows.length==0) {
+	 	var link=document.getElementById('more');
+	 	link.removeAttribute('href');
+	 	link.innerHTML='...'
+	 }
+	 else {
+	 	for (var i = 0; i < rows.length; i++) {
+	 		var line=document.createElement('div');
+	 		line.className='line';
+
+		 	var title=document.createElement('span');
+			title.className='title';
+	 		title.appendChild(document.createTextNode(rows[i]['title']));
+
+		 	var desc=document.createElement('span');
+			desc.className='desc';
+	 		desc.appendChild(document.createTextNode(rows[i]['description']));
+
+	 		line.appendChild(title);
+	 		line.appendChild(desc);
+	 		document.getElementById('line-container').appendChild(line);
+
+	 	};
+	 }		 	
+});
