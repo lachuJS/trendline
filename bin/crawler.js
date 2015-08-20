@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+crawl();
 setInterval(crawl,600000);
 function crawl(){
 	console.log('crawling...');	

@@ -12,9 +12,11 @@
 	<!--header-->	
 	<div class="navbar-fixed">
 		<nav>
-			<div class="nav-wrapper white">
-				<span class="brand-logo center" style='color:black'>
-					<strong>trendline.</strong>
+			<div class="nav-wrapper blue-grey darken-4">
+				<span class="brand-logo center white-text">
+					<div class="row">
+						<span><strong>trendline.</strong></span>	
+					</div>
 				</span>
 			</div>
 		</nav>
@@ -22,14 +24,41 @@
 	<!--container-->
 	<div class='container'>
 		<div id='line-container'>
+			
+			<!-- line cards -->
 			<div class="row">
 				<div class="col l8 s12 m12 offset-l2" id="234"><!--lines class added here--></div>
-				<a class="col s12 m12" href='javascript:void(0);' onclick="query();" id='more' style="text-align:center">		
-				Get more lines.
-				</a>
 			</div>
-		</div>
-	</div>	
 
+			<!--more-->
+			<div class="row" style="display:none" id='more'>
+				<div class="col l8 s12 m12 offset-l2">
+					<div class="card-panel" style="text-align:center">
+						<a href='javascript:void(0);' onclick="query();">		
+							Get more lines
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!--footer-->
+			<div class="row">
+				<div class="col l8 s12 m12 offset-l2">
+					<div class="card-panel">
+						<h5><strong>about</strong></h5>
+							<p><strong>trendline is an opensource news bot app running on free servers and is still in beta.If you have prolems loading ,then the free quota of sql server for you is probably over.Please check back later.</strong></p>
+						<h5><strong>on the works</strong></h5>
+						<p>Error handlers,caching and location based news</p>
+						<h5><strong>gitub</strong></h5>
+							<p>
+								This app is opensourced.You can contribute by pulling it on <a href="https://github.com/ilachu/trendline">github</a>
+							</p>
+							<i  class='grey-text'><a href="mailto:lakshminarayanan2060@gmail.com">email:</a>lakshminarayanan</i> 
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
 </body>
 </html>

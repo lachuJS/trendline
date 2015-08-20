@@ -37,8 +37,8 @@ io.on('gotlines',function (rows){
 			var link=document.createElement('a');
 			link.setAttribute('href',rows[i]['url']);
 			link.setAttribute('target','_blank');
-			link.className='black-text';
-			link.setAttribute('style','text-decoration:underline');
+			link.className='teal-text';
+			//link.setAttribute('style','text-decoration:underline');
 			link.appendChild(document.createTextNode(rows[i]['source']));
 			link_div=document.createElement('div');
 			link_div.className='card-action';
@@ -49,6 +49,7 @@ io.on('gotlines',function (rows){
 	 		card.appendChild(card_content);
 	 		card.appendChild(link_div);
 	 		document.getElementById('234').appendChild(card);
+	 		document.getElementById('more').removeAttribute('style');
 
 	 	};
 	 }		 	
