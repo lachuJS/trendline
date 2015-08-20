@@ -13,10 +13,10 @@ String.prototype.supplant = function (o) {
 
 db.connect=function (){
 	con=mysql.createConnection({
-		host:'localhost',
-		user:'root',
-		password:'asspearinse',
-		database:'headline'
+		host:'sql6.freemysqlhosting.net',
+		user:'sql687533',
+		password:'zM4*sZ6*',
+		database:'sql687533'
 	});
 	con.connect();
 }
