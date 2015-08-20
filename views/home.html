@@ -2,16 +2,34 @@
 <html>
 <head>
 	<title>trendline</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
 	<script type="text/javascript" src="socket.io/socket.io.js"></script>
-	<script type="text/javascript" src='js/getlines.min.js'></script>
+	<script type="text/javascript" src='js/getlines.js'></script>
 </head>
 <body>
-	<h1>Trendline.</h1>	
-	<div id='container'>
+	<!--header-->	
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper white">
+				<span class="brand-logo center" style='color:black'>
+					<strong>trendline.</strong>
+				</span>
+			</div>
+		</nav>
+	</div>
+	<!--container-->
+	<div class='container'>
 		<div id='line-container'>
-		
+			<div class="row">
+				<div class="col s12 m8 offset-m2" id="234"><!--lines class added here--></div>
+				<a class="col s12 m12" href='javascript:void(0);' onclick="query();" id='more' style="text-align:center">		
+				more
+				</a>
+			</div>
 		</div>
-		<a href='javascript:void(0);' onclick="query();" id='more'>more</a>
 	</div>	
+
 </body>
 </html>
