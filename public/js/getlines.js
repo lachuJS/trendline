@@ -4,7 +4,7 @@ document.onload=query();
 function query(){
 	if (count!=-1) {
 		document.getElementById('progress').removeAttribute('style');
-		document.getElementById('more').innerHTML='';
+		document.getElementById('more').setAttribute('style','display:none');
 	};
 	count++;
 	io.emit('getlines',count);
@@ -60,6 +60,6 @@ io.on('gotlines',function (rows){
 	 	//replace animation with link
 	 	var progress=document.getElementById('progress');
 	 	progress.setAttribute('style','display:none');
-	 	document.getElementById('more').innerHTML="<strong>get more lines.</strong>";
+	 	document.getElementById('more').removeAttribute('style');
 	 }		 	
 });
