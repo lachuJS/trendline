@@ -42,7 +42,8 @@ db.save=function (trend,title,source,url,desc,date){
 }
 db.retreive=function (count,callback){
 	console.log(count);
-	con.query('select * from line where date=curdate()-{count} order by time desc'.supplant({count:count}),function (err,rows,coloumns){
+	from=count*10;
+	con.query('select * from line order by date desc, time desc limit {from}, 10'.supplant({from:from}),function (err,rows,coloumns){
 		//console.log(rows);
 		callback(rows);
 	})
