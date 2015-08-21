@@ -12,35 +12,39 @@
 	<!--header-->	
 	<div class="navbar-fixed">
 		<nav>
-			<div class="nav-wrapper white">
-				<span class="brand-logo center black-text">
-					<div class="row">
-						<span><strong>trendline.</strong></span>	
-					</div>
-				</span>
+			<div class="nav-wrapper white z-depth-0">
+				<div style="align:center">
+					<span class="brand-logo center black-text">
+						<div class="row">
+							<span><strong>trendline.</strong></span>	
+						</div>
+					</span>
+				</div>
 			</div>
 		</nav>
 	</div>
 	<!--container-->
-	<div class='container'>
-		<div id='line-container'>
+	<div class='container'><br>
+		<div id='line-container' style="border:grey 2px">
 			
 			<!-- line cards -->
 			<div class="row">
-				<div class="col l8 s12 m12 offset-l2" id="234"><!--lines class added here--></div>
+				<div class="col l8 s12 m12 offset-l2" id="234">
+					<!--lines class added here-->
+				</div>
 			</div>
 
 			<!--more-->
 			<div class="row">
 				<div class="col l8 s12 m12 offset-l2">
-					<div class="card-panel" style="text-align:center">
-							
+					<div class="card-panel z-depth-1" style="text-align:center">		
 							<!--loading animation-->
-							<div class="progress" id="progress">
-								<div class="indeterminate"></div>
+							<div class="row" id="progress">
+								<div class="progress">
+    	  							<div class="indeterminate"></div>
+  								</div>
 							</div>
 							<a href='javascript:void(0);' onclick="query();" id='more'></a>
-
 					</div>
 				</div>
 			</div>
@@ -49,7 +53,7 @@
 			<div class="row">
 				<div class="col l8 s12 m12 offset-l2">
 					<div class="card-panel">
-						<h5><strong>about</strong></h5>
+						<h5 style="font-size:25px"><strong>about</strong></h5>
 							<p><strong>trendline is an opensource news bot app running on free servers and is still in beta.This app is opensourced.You can contribute by pulling it on <a href="https://github.com/ilachu/trendline" target='_blank'>github</a>.(On the works:error handlers,loaction based news.)
 							</strong></p> 
 					</div>
