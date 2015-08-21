@@ -2,10 +2,16 @@ var io=io();
 var count=-1;
 document.onload=query();
 function query(){
+	if (count!=-1) {
+		document.getElementById('progress').removeAttribute('style');
+		document.getElementById('more').innerHTML='';
+	};
 	count++;
 	io.emit('getlines',count);
 }
 io.on('gotlines',function (rows){
+	 //start animation
+
 	 if (rows.length==0) {
 	 	if (count==0) {
 	 		count++;
@@ -34,12 +40,15 @@ io.on('gotlines',function (rows){
 		 	var desc_text=document.createTextNode(rows[i]['description']);
 		 	desc.appendChild(desc_text);
 
+			var url=document.createElement('strong');
+			
 			var link=document.createElement('a');
 			link.setAttribute('href',rows[i]['url']);
 			link.setAttribute('target','_blank');
 			link.className='teal-text';
-			//link.setAttribute('style','text-decoration:underline');
-			link.appendChild(document.createTextNode(rows[i]['source']));
+			
+			url.appendChild(document.createTextNode(rows[i]['source']));
+			link.appendChild(url);
 			link_div=document.createElement('div');
 			link_div.className='card-action';
 			link_div.appendChild(link);
@@ -49,8 +58,10 @@ io.on('gotlines',function (rows){
 	 		card.appendChild(card_content);
 	 		card.appendChild(link_div);
 	 		document.getElementById('234').appendChild(card);
-	 		document.getElementById('more').removeAttribute('style');
-
 	 	};
+	 	//replace animation with link
+	 	var progress=document.getElementById('progress');
+	 	progress.setAttribute('style','display:none');
+	 	document.getElementById('more').innerHTML='<strong>get more lines.<strong>';
 	 }		 	
 });
